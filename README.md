@@ -1,2 +1,3 @@
 # diva
-DigitalVault package repository
+
+DigitalVault module with packages required for the application.
