@@ -15,7 +15,7 @@ func Version() string {
 
 	for _, d := range bi.Deps {
 		// fmt.Printf("\tbuilt with %s version %s\n", d.Path, d.Version)
-		fmt.Printf("Package: %s Version: %s\n", d.Path, d.Version)
+		fmt.Printf("%s@%s\n", d.Path, d.Version)
 	}
   return "v0.2"
 }
