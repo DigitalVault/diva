@@ -11,10 +11,11 @@ func Version() string {
 		panic("couldn't read build info")
 	}
 
-	fmt.Printf("%s version %s\n", bi.Path, bi.Main.Version)
+	// fmt.Printf("%s version %s\n", bi.Path, bi.Main.Version)
 
 	for _, d := range bi.Deps {
-		fmt.Printf("\tbuilt with %s version %s\n", d.Path, d.Version)
+		// fmt.Printf("\tbuilt with %s version %s\n", d.Path, d.Version)
+		fmt.Printf("Package: %s Version: %s\n", d.Path, d.Version)
 	}
   return "v0.2"
 }
