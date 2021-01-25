@@ -1,5 +1,5 @@
 package db
 
 type DbIf interface {
-  init() (err error)
+	init() (err error)
 }

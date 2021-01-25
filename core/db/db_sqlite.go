@@ -1,26 +1,26 @@
 package db
 
 import (
-    "database/sql"
-//    "fmt"
-    _ "github.com/mattn/go-sqlite3"
-    "log"
-//    "os"
+	"database/sql"
+	//    "fmt"
+	_ "github.com/mattn/go-sqlite3"
+	"log"
+	//    "os"
 )
 
 type DbSqlite struct {
-  Path string
-  Db *sql.DB 
+	Path string
+	Db   *sql.DB
 }
 
-func (dbSqlite *DbSqlite)init() (error) {
-  log.Printf("[DbSqlite::init] Initialising digital vault DB at %s", dbSqlite.Path)
+func (dbSqlite *DbSqlite) init() error {
+	log.Printf("[DbSqlite::init] Initialising digital vault DB at %s", dbSqlite.Path)
 
 	db, err := sql.Open("sqlite3", dbSqlite.Path)
-  dbSqlite.Db = db
+	dbSqlite.Db = db
 	if err != nil {
 		log.Fatal(err)
-    return err
+		return err
 	}
 	defer dbSqlite.Db.Close()
 
@@ -34,6 +34,5 @@ func (dbSqlite *DbSqlite)init() (error) {
 		return err
 	}
 
-  return nil;
+	return nil
 }
-

@@ -1,7 +1,7 @@
 package fs
 
 import (
-  "testing"
+	"testing"
 )
 
 func TestInit(t *testing.T) {

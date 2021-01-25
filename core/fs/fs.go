@@ -1,9 +1,9 @@
 package fs
 
 import (
-  "fmt"
+	"fmt"
 )
 
 func init() {
-  fmt.Println("package fs::Init")
+	fmt.Println("package fs::Init")
 }
