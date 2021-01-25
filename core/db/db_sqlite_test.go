@@ -6,7 +6,7 @@ import (
 )
 
 func TestInit(t *testing.T) {
-	var db = DbSqlite{"./test.sqlite", nil}
+	var db = DbSqlite{Path : "./test.sqlite"}
 	if db.init() != nil {
 		t.Error("Expected error return value to be nil.")
 	}
