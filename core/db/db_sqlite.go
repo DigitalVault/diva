@@ -4,7 +4,8 @@ import (
 	"database/sql"
 	//    "fmt"
 	_ "github.com/mattn/go-sqlite3"
-	"log"
+	//"log"
+	log "github.com/sirupsen/logrus"
 	//    "os"
 )
 
@@ -14,7 +15,7 @@ type DbSqlite struct {
 }
 
 func (dbSqlite *DbSqlite) init() error {
-	log.Printf("[DbSqlite::init] Initialising digital vault DB at %s", dbSqlite.Path)
+	log.Infof("Initialising digital vault DB at %s", dbSqlite.Path)
 
 	db, err := sql.Open("sqlite3", dbSqlite.Path)
 	dbSqlite.Db = db
@@ -30,7 +31,7 @@ func (dbSqlite *DbSqlite) init() error {
 	`
 	_, err = dbSqlite.Db.Exec(sqlStmt)
 	if err != nil {
-		log.Printf("%q: %s\n", err, sqlStmt)
+		log.Infof("%q: %s\n", err, sqlStmt)
 		return err
 	}
 
