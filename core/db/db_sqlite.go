@@ -25,13 +25,29 @@ func (dbSqlite *DbSqlite) init() error {
 	}
 	defer dbSqlite.Db.Close()
 
+	/*
 	sqlStmt := `
 	create table foo (id integer not null primary key, name text);
 	delete from foo;
 	`
-	_, err = dbSqlite.Db.Exec(sqlStmt)
+	*/
+
+	initSqlStmt := `
+	create table source_files (
+		hostname text not null, 
+		drive text not null, 
+		path text not null, 
+		filename text not null, 
+		filetype varchar(20), 
+		date_created datetime, 
+		date_modified datetime, 
+		work_status varchar(20), 
+		primary key (hostname, drive, path, filename)
+	);
+	`
+	_, err = dbSqlite.Db.Exec(initSqlStmt)
 	if err != nil {
-		log.Infof("%q: %s\n", err, sqlStmt)
+		log.Infof("%q: %s\n", err, initSqlStmt)
 		return err
 	}
 

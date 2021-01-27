@@ -12,10 +12,10 @@ func TestMain(m *testing.M) {
 }
 
 func TestInit(t *testing.T) {
+	os.Remove("./test.sqlite")
 	var db = DbSqlite{Path : "./test.sqlite"}
 	if db.init() != nil {
 		t.Error("Expected error return value to be nil.")
 	}
-	os.Remove("./test.sqlite")
 }
 
