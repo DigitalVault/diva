@@ -38,9 +38,8 @@ func (dbSqlite *DbSqlite) init() error {
 		drive text not null, 
 		path text not null, 
 		filename text not null, 
+		date_modified datetime not null, 
 		filetype varchar(20), 
-		date_created datetime, 
-		date_modified datetime, 
 		work_status varchar(20), 
 		primary key (hostname, drive, path, filename)
 	);
