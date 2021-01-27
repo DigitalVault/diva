@@ -17,5 +17,6 @@ func TestInit(t *testing.T) {
 	if db.init() != nil {
 		t.Error("Expected error return value to be nil.")
 	}
+	os.Remove("./test.sqlite")
 }
 
