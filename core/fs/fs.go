@@ -1,9 +1,9 @@
 package fs
 
 import (
-  "fmt"
+	log "github.com/sirupsen/logrus"
 )
 
 func init() {
-  fmt.Println("package fs::Init")
+	log.Println("package fs::Init")
 }
