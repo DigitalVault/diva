@@ -1,8 +1,8 @@
 package cli
 
 import (
-  "fmt"
-  "runtime/debug"
+	"fmt"
+	"runtime/debug"
 )
 
 func Version() string {
@@ -17,5 +17,5 @@ func Version() string {
 		// fmt.Printf("\tbuilt with %s version %s\n", d.Path, d.Version)
 		fmt.Printf("%s@%s\n", d.Path, d.Version)
 	}
-  return "v0.2"
+	return "v0.2"
 }
