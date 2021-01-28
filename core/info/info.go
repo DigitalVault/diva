@@ -20,19 +20,19 @@ var Info AppInfo
 func init() {
   Info.Gather()
   Info.SysInfo()
-  Info.Print()
+  //Info.Print()
 }
 
 func (appInfo *AppInfo) SysInfo() (error) {
   partitions, err := disk.Partitions(true)
   for i, p:= range partitions {
-    log.Info(i, p)
+    log.Debug(i, p)
   }
   return err
 }
 
 func (appInfo *AppInfo) Gather() (error) {
-  log.Infof("Gathering information about the computer.")
+  log.Debug("Gathering information about the computer.")
   Info.os = runtime.GOOS
   Info.arch = runtime.GOARCH
   hostname, err := os.Hostname()
