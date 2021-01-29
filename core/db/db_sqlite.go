@@ -34,6 +34,7 @@ func (dbSqlite *DbSqlite) init() error {
 
 	initSqlStmt := `
 	create table source_files (
+		id integer primary key autoincrement,
 		hostname text not null, 
 		drive text not null, 
 		path text not null, 
@@ -41,7 +42,7 @@ func (dbSqlite *DbSqlite) init() error {
 		date_modified datetime not null, 
 		filetype varchar(20), 
 		work_status varchar(20), 
-		primary key (hostname, drive, path, filename)
+		unique (hostname, drive, path, filename)
 	);
 	`
 	_, err = dbSqlite.Db.Exec(initSqlStmt)

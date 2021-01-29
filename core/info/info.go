@@ -8,11 +8,11 @@ import (
 )
 
 type AppInfo struct {
-  os string
-  arch string
-  hostname string
-  homeDir string
-  disks []string
+  Os string
+  Arch string
+  Hostname string
+  HomeDir string
+  Disks []string
 }
 
 var Info AppInfo
@@ -33,19 +33,19 @@ func (appInfo *AppInfo) SysInfo() (error) {
 
 func (appInfo *AppInfo) Gather() (error) {
   log.Debug("Gathering information about the computer.")
-  Info.os = runtime.GOOS
-  Info.arch = runtime.GOARCH
+  Info.Os = runtime.GOOS
+  Info.Arch = runtime.GOARCH
   hostname, err := os.Hostname()
   homeDir, err := os.UserHomeDir()
-  Info.hostname = hostname
-  Info.homeDir = homeDir
+  Info.Hostname = hostname
+  Info.HomeDir = homeDir
   return err
 }
 
 func (appInfo *AppInfo) Print() {
   log.Infof("Gathered information:")
-  log.Infof("OS       : %s", Info.os);
-  log.Infof("ARCH     : %s", Info.arch);
-  log.Infof("Hostname : %s", Info.hostname);
-  log.Infof("Home dir : %s", Info.homeDir);
+  log.Infof("OS       : %s", Info.Os);
+  log.Infof("ARCH     : %s", Info.Arch);
+  log.Infof("Hostname : %s", Info.Hostname);
+  log.Infof("Home dir : %s", Info.HomeDir);
 }
