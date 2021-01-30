@@ -20,3 +20,13 @@ func TestGetConfigPath(t *testing.T) {
 	GetConfig()
 }
 
+func TestGetConfig(t *testing.T) {
+	config, err := GetConfig()
+	if err != nil {
+		t.Fail()
+	}
+	log.Warnf("config :\n%v\n\n", config)
+	if config.DigitalVaults[0].Name != "test 1" {
+		t.Errorf("Test fails. %v", config.DigitalVaults[0].Name) 
+	}	
+}
