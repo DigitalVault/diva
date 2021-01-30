@@ -14,8 +14,8 @@ func TestMain(m *testing.M) {
 func TestGetConfigPath(t *testing.T) {
 	configPath := GetConfigPath()
 	log.Info(configPath)
-	SetConfigPath("/a/b/c.yml")
-	configPath = GetConfigPath()
+//	SetConfigPath("/a/b/c.yml")
+//	configPath = GetConfigPath()
 	log.Info(configPath)
 	GetConfig()
 }

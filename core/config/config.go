@@ -2,7 +2,9 @@ package config
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	log "github.com/sirupsen/logrus"
 
@@ -12,11 +14,14 @@ import (
 
 var configPath string
 
-type ScannerType struct {
-	Patterns []string `yaml:"patterns",flow`
+type DigitalVaultType struct {
+	Name string `yaml:"name"`
+	DisplayName string `yaml:"displayname"`
+	Path string `yaml:"path"`
 }
+
 type Config struct {
-	Scanner ScannerType `yaml:"scanner"`
+	DigitalVaults []DigitalVaultType `yaml:"digitalvaults"`
 }
 
 func GetConfigPath() string {
@@ -59,15 +64,38 @@ func GetConfig() (*Config, error) {
 	return config, nil
 }
 
-func WriteConfig(config Config, overwrite bool) {
+func WriteConfig(config Config, overwrite bool) error {
+	log.Warnf("Opening %s", configPath)
+
+	d, err := yaml.Marshal(&config)
+
+	log.Warn(string(d))
+
+	dir, _ := filepath.Split(configPath)
+	err = os.MkdirAll(dir, 0755)
+	if err != nil {
+		log.Fatalf("error: %v", err)
+	}
+	err = ioutil.WriteFile(configPath, d, 0644)
+
+	return err
 }
 
 func GetDefaultConfig() Config {
-	config := &Config{
-		Scanner : ScannerType {
-			Patterns: []string{"*.jpg", "*.png"},
-		},
+	data := `
+digitalvaults:
+ - name: "test 1"
+   displayname: "disp 1"
+   path: "path 1"
+ - name: "test 2"
+   displayname: "disp 2"
+   path: "path 2"
+`
+	config := &Config{}
+	err := yaml.Unmarshal([]byte(data), config)
+	if err != nil {
+		log.Fatalf("error: %v", err)
 	}
-	log.Info(config)
+	log.Infof("config:\n%v\n\n", config)
 	return *config
 }

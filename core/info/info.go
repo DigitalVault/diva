@@ -24,6 +24,7 @@ func init() {
 }
 
 func (appInfo *AppInfo) SysInfo() (error) {
+  log.Warn("info.SysInfo")
   partitions, err := disk.Partitions(true)
   for i, p:= range partitions {
     log.Debug(i, p)
